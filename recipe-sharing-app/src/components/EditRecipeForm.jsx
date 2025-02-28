@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { useRecipeStore } from "../store/recipeStore"; // Import Zustand store
 
 const EditRecipeForm = ({ recipe, onClose }) => {
-  const { updateRecipe } = useRecipeStore(); // Get update function from the store
+  const { updateRecipe } = useRecipeStore(); // Get update function from Zustand store
 
-  // Local state to store form inputs
+  // Local state for form inputs
   const [editedRecipe, setEditedRecipe] = useState({ ...recipe });
 
   // Handle input changes
@@ -12,10 +12,11 @@ const EditRecipeForm = ({ recipe, onClose }) => {
     setEditedRecipe({ ...editedRecipe, [e.target.name]: e.target.value });
   };
 
-  // Handle form submission
+  // ✅ Handle form submission with `event.preventDefault()`
   const handleSubmit = (e) => {
-    e.preventDefault(); // Prevent default form reload behavior
-    updateRecipe(editedRecipe); // Update recipe in Zustand store
+    e.preventDefault(); // Prevents page reload
+
+    updateRecipe(editedRecipe); // Update the recipe in Zustand store
     onClose(); // Close the form after saving
   };
 
@@ -52,6 +53,7 @@ const EditRecipeForm = ({ recipe, onClose }) => {
         />
       </label>
 
+      {/* Save and Cancel Buttons */}
       <button type="submit">Save Changes</button>
       <button type="button" onClick={onClose}>Cancel</button>
     </form>
