@@ -1,4 +1,6 @@
 import create from "zustand";
+import favorites from './favorites';
+import recommendations from "./recommendations";
 
 const useRecipeStore = create((set, get) => ({
   recipes: [], // Full list of recipes
