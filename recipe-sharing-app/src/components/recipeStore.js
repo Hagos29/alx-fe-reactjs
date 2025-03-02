@@ -2,6 +2,21 @@ import create from "zustand";
 import favorites from './favorites';
 import recommendations from "./recommendations";
 
+const EditRecipeForm = ({ recipe, onClose }) => {
+  const { updateRecipe } = useRecipeStore();
+  const [updatedRecipe, setUpdatedRecipe] = useState(recipe);
+
+  const handleChange = (e) => {
+    setUpdatedRecipe({ ...updatedRecipe, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault(); // ✅ Prevent default form submission behavior
+
+    updateRecipe(updatedRecipe);
+    onClose(); // Close the form after updating
+  };
+
 const useRecipeStore = create((set, get) => ({
   recipes: [], // Full list of recipes
   filteredRecipes: [], // Filtered recipes
@@ -23,6 +38,8 @@ const useRecipeStore = create((set, get) => ({
   setRecipes: (newRecipes) => {
     set({ recipes: newRecipes, filteredRecipes: newRecipes }); // Initialize both lists
   },
+  
+  
   addRecipe: (newRecipe) => {
     set((state) => ({
       recipes: [...state.recipes, newRecipe],
@@ -60,5 +77,5 @@ const useRecipeStore = create((set, get) => ({
   },
 
 }));
-
+}
 export default useRecipeStore;
