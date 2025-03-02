@@ -1,16 +1,14 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; // ✅ Import React Router components
-import RecipeList from "./components/RecipeList";
-import EditRecipeForm from "./components/EditRecipeForm";
-import NotFound from "./components/NotFound"; // Optional: Handle 404 pages
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import RecipeList from './components/RecipeList';
+import EditRecipeForm from './components/EditRecipeForm';
 
 const App = () => {
   return (
-    <Router> {/* ✅ Wrap the app in Router */}
+    <Router>
       <Routes>
-        <Route path="/" element={<RecipeList />} /> {/* ✅ Home page */}
-        <Route path="/edit/:id" element={<EditRecipeForm />} /> {/* ✅ Edit Recipe */}
-        <Route path="*" element={<NotFound />} /> {/* ✅ Handle unknown routes */}
+        <Route path="/" element={<RecipeList />} />
+        <Route path="/edit/:id" element={<EditRecipeForm />} />
       </Routes>
     </Router>
   );

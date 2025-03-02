@@ -1,5 +1,5 @@
 import React from "react";
-import { useRecipeStore } from "../store/recipeStore"; // Import Zustand store
+import { useRecipeStore } from "./recipeStore"; // Import Zustand store
 import { useNavigate } from "react-router-dom"; // ✅ Import useNavigate
 
 const DeleteRecipeButton = ({ recipeId }) => {

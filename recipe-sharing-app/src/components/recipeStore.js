@@ -1,36 +1,26 @@
-import { create } from 'zustand';
+import create from "zustand";
 
-export const useRecipeStore = create((set) => ({
-  // Load recipes from localStorage or initialize with an empty array
-  recipes: JSON.parse(localStorage.getItem('recipes')) || [],
+const useRecipeStore = create((set, get) => ({
+  recipes: [], // Full list of recipes
+  filteredRecipes: [], // Filtered recipes
+  searchTerm: "",
 
-  // Add a new recipe
-  addRecipe: (recipe) => {
-    set((state) => {
-      const updatedRecipes = [...state.recipes, recipe];
-      localStorage.setItem('recipes', JSON.stringify(updatedRecipes));
-      return { recipes: updatedRecipes };
-    });
+  setSearchTerm: (term) => {
+    set({ searchTerm: term });
+    get().filterRecipes(); // Trigger filtering when search term updates
   },
 
-  // Update an existing recipe
-  updateRecipe: (updatedRecipe) => {
-    set((state) => {
-      const updatedRecipes = state.recipes.map((recipe) =>
-        recipe.id === updatedRecipe.id ? updatedRecipe : recipe
-      );
-      localStorage.setItem('recipes', JSON.stringify(updatedRecipes));
-      return { recipes: updatedRecipes };
-    });
+  filterRecipes: () => {
+    const { recipes, searchTerm } = get();
+    const filtered = recipes.filter((recipe) =>
+      recipe.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    set({ filteredRecipes: filtered });
   },
 
-  // Delete a recipe by ID
-  deleteRecipe: (id) => {
-    set((state) => {
-      const updatedRecipes = state.recipes.filter((recipe) => recipe.id !== id);
-      localStorage.setItem('recipes', JSON.stringify(updatedRecipes));
-      return { recipes: updatedRecipes };
-    });
+  setRecipes: (newRecipes) => {
+    set({ recipes: newRecipes, filteredRecipes: newRecipes }); // Initialize both lists
   },
 }));
+
 export default useRecipeStore;
