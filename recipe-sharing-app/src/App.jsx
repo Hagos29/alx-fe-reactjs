@@ -4,6 +4,9 @@ import RecipeList from './components/RecipeList';
 import EditRecipeForm from './components/EditRecipeForm';
 import AddRecipeForm from './components/AddRecipeForm';
 import RecipeDetail from './components/RecipeDetails';
+import RecommendationsList from "./components/RecommendationsList";
+
+
 
 const App = () => {
   return (
