@@ -10,7 +10,7 @@ const EditRecipeForm = ({ recipe, onClose }) => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault(); // Prevent page reload
+    event.preventDefault(); // Prevent page reload
     updateRecipe(editedRecipe);
     onClose();
   };
