@@ -23,6 +23,42 @@ const useRecipeStore = create((set, get) => ({
   setRecipes: (newRecipes) => {
     set({ recipes: newRecipes, filteredRecipes: newRecipes }); // Initialize both lists
   },
+  addRecipe: (newRecipe) => {
+    set((state) => ({
+      recipes: [...state.recipes, newRecipe],
+      filteredRecipes: [...state.filteredRecipes, newRecipe], // Keep filtered list updated
+    }));
+  },
+
+  // ✅ Update an existing recipe
+  updateRecipe: (updatedRecipe) => {
+    set((state) => {
+      const updatedRecipes = state.recipes.map((recipe) =>
+        recipe.id === updatedRecipe.id ? updatedRecipe : recipe
+      );
+
+      return {
+        recipes: updatedRecipes,
+        filteredRecipes: updatedRecipes.filter((recipe) =>
+          recipe.name.toLowerCase().includes(state.searchTerm.toLowerCase())
+        ),
+      };
+    });
+  },
+
+  // ✅ Delete a recipe
+  deleteRecipe: (recipeId) => {
+    set((state) => {
+      const updatedRecipes = state.recipes.filter((recipe) => recipe.id !== recipeId);
+      return {
+        recipes: updatedRecipes,
+        filteredRecipes: updatedRecipes.filter((recipe) =>
+          recipe.name.toLowerCase().includes(state.searchTerm.toLowerCase())
+        ),
+      };
+    });
+  },
+
 }));
 
 export default useRecipeStore;
