@@ -15,10 +15,13 @@ const PostsComponent = () => {
     isError,
     refetch,
     isFetching,
-  } = useQuery(['posts'], fetchPosts, {
+  } = useQuery({
+    queryKey: ['posts', page],
+    queryFn: () => fetchPosts(page),
+    placeholderData: keepPreviousData,
     staleTime: 60000, // Data is considered fresh for 1 minute
     cacheTime: 300000, // Unused data stays in cache for 5 minutes
-    refetchOnWindowFocus: false, // Disable refetch on window focus
+    refetchOnWindowFocus: false, //
   });
 
   if (isLoading) {
