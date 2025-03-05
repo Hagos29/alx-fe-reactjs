@@ -12,7 +12,20 @@ const ControlledForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(formData);
+        const validationErrors = {};
+        if (!username) validationErrors.username = 'Username is required';
+        if (!email) validationErrors.email = 'Email is required';
+        if (!password) validationErrors.password = 'Password is required';
+    
+        // Update errors state
+        setErrors(validationErrors);
+    
+        // If no errors, proceed with form submission
+        if (Object.keys(validationErrors).length === 0) {
+          // Perform form submission logic here
+          console.log('Form submitted:', { username, email, password });
+        }
+      
     };
 
     return (
