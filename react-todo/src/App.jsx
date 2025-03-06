@@ -1,5 +1,7 @@
 import React from "react";
-import TodoList from "./TodoList";
+import TodoList from ".components//TodoList";
+import TestingComponent from "./TestingComponent"; // Adjust path if needed
+
 
 
 function App() {
@@ -7,7 +9,10 @@ function App() {
       <div>
         <h1>My Todo App</h1>
         <TodoList />
+      <TestingComponent />
+    
       </div>
+      
     );
   }
   
