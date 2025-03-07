@@ -1,9 +1,10 @@
 import { useState } from "react";
 
-export default function TodoList() {
+export default function TodoApp() {
   const [todos, setTodos] = useState([
     { id: 1, text: "Learn React", completed: false },
-    { id: 2, text: "Build a Todo App", completed: false },
+    { id: 2, text: "Build a project", completed: false },
+    { id: 3, text: "Review code", completed: false },
   ]);
   const [newTodo, setNewTodo] = useState("");
 
@@ -26,33 +27,30 @@ export default function TodoList() {
   };
 
   return (
-    <div className="p-4 max-w-md mx-auto bg-white shadow-lg rounded-lg">
-      <h2 className="text-xl font-bold mb-4">Todo List</h2>
+    <div className="p-4 max-w-md mx-auto">
+      <h1 className="text-xl font-bold mb-4">Todo List</h1>
       <div className="flex mb-4">
         <input
           type="text"
+          className="border p-2 flex-grow mr-2"
           value={newTodo}
           onChange={(e) => setNewTodo(e.target.value)}
-          className="border p-2 flex-grow rounded-l"
-          placeholder="Add a new task"
         />
-        <button onClick={addTodo} className="bg-blue-500 text-white p-2 rounded-r">
+        <button className="bg-blue-500 text-white px-4 py-2" onClick={addTodo}>
           Add
         </button>
       </div>
       <ul>
         {todos.map((todo) => (
-          <li key={todo.id} className="flex items-center justify-between p-2 border-b">
-            <span
-              onClick={() => toggleTodo(todo.id)}
-              className={
-                "cursor-pointer " + (todo.completed ? "line-through text-gray-500" : "")
-              }
-            >
+          <li
+            key={todo.id}
+            className={`flex justify-between p-2 border-b ${todo.completed ? "line-through text-gray-500" : ""}`}
+          >
+            <span onClick={() => toggleTodo(todo.id)} className="cursor-pointer">
               {todo.text}
             </span>
-            <button onClick={() => deleteTodo(todo.id)} className="text-red-500">
-              ✖
+            <button className="text-red-500" onClick={() => deleteTodo(todo.id)}>
+              Delete
             </button>
           </li>
         ))}
