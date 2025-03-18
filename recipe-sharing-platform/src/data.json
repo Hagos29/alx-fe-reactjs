@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "title": "Spaghetti Carbonara",
+    "summary": "A classic Italian pasta dish with eggs, cheese, pancetta, and pepper.",
+    "image": "https://example.com/images/spaghetti-carbonara.jpg"
+  },
+  {
+    "id": 2,
+    "title": "Chicken Tikka Masala",
+    "summary": "A flavorful dish featuring marinated chicken in a spiced tomato sauce.",
+    "image": "https://example.com/images/chicken-tikka-masala.jpg"
+  },
+  {
+    "id": 3,
+    "title": "Avocado Toast",
+    "summary": "A healthy and delicious breakfast option topped with fresh avocado and seasonings.",
+    "image": "https://example.com/images/avocado-toast.jpg"
+  },
+  {
+    "id": 4,
+    "title": "Beef Stroganoff",
+    "summary": "A Russian-inspired dish with sautéed beef in a creamy mushroom sauce.",
+    "image": "https://example.com/images/beef-stroganoff.jpg"
+  },
+  {
+    "id": 5,
+    "title": "Vegan Buddha Bowl",
+    "summary": "A colorful and nutritious bowl packed with vegetables, grains, and protein.",
+    "image": "https://example.com/images/vegan-buddha-bowl.jpg"
+  }
+]
