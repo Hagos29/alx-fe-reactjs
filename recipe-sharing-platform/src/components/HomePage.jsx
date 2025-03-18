@@ -3,7 +3,7 @@ import jsonData from "../data.json";
 
 const Card = ({ title, summary, image }) => {
   return (
-    <div className="bg-gray rounded-2xl shadow-lg overflow-hidden w-80 border border-gray-200 p-4">
+    <div className="bg-gray  hover:bg-gray-600 rounded-2xl shadow-lg overflow-hidden w-80 border border-gray-200 p-4 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
       <img src={image} alt={title} className="w-full h-48 object-cover rounded-t-2xl" />
       <div className="p-4">
         <h2 className="text-xl font-semibold">{title}</h2>
