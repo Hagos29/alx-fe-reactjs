@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from "react"; 
-import jsonData from "../data.json";
+import React, { useState, useEffect } from "react";
 
-const Card = ({ title, summary, image }) => {
+const Card = ({ name, description, image }) => {
   return (
-    <div className="bg-gray  hover:bg-gray-600 rounded-2xl shadow-lg overflow-hidden w-80 border border-gray-200 p-4 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-      <img src={image} alt={title} className="w-full h-48 object-cover rounded-t-2xl" />
+    <div className="bg-white hover:shadow-xl rounded-2xl shadow-md overflow-hidden w-80 border border-gray-200 p-4 transition-transform duration-300 hover:scale-105">
+      <img src={image} alt={name} className="w-full h-48 object-cover rounded-t-2xl" />
       <div className="p-4">
-        <h2 className="text-xl font-semibold">{title}</h2>
-        <p className="text-gray-600 mt-2">{summary}</p>
+        <h2 className="text-xl font-semibold">{name}</h2>
+        <p className="text-gray-600 mt-2">{description}</p>
       </div>
     </div>
   );
@@ -18,18 +17,23 @@ const HomePage = () => {
 
   useEffect(() => {
     fetch("/data.json")
-      .then((response) => response.json())
-      .then((data) => setRecipes(data));
+      .then((response) => {
+        return response.json()
+      })
+      .then((data) => {
+        return setRecipes(data.recipes)
+      }) // ✅ Access the correct key
+      .catch((error) => console.error("Error loading recipes:", error));
   }, []);
 
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold text-center mb-6">Recipe List</h1>
-      <div className="flex flex-wrap gap-6 justify-center">
+    <div className="container mx-auto p-6">
+      <h1 className="text-3xl font-bold text-center mb-6">Recipe List</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-center">
         {recipes.length > 0 ? (
           recipes.map((recipe) => <Card key={recipe.id} {...recipe} />)
         ) : (
-          <p>Loading recipes...</p>
+          <p className="text-gray-600 text-center">Loading recipes...</p>
         )}
       </div>
     </div>
