@@ -7,7 +7,7 @@ const Search = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const handleSearch = async (event) => {
+  const fetchUserData = async (event) => {
     event.preventDefault();
     if (!username) return;
     setLoading(true);
@@ -26,7 +26,7 @@ const Search = () => {
 
   return (
     <div className="flex flex-col items-center p-6 bg-gray-100 min-h-screen">
-      <form onSubmit={handleSearch} className="w-full max-w-md p-4 bg-white rounded-lg shadow-lg">
+      <form onSubmit={fetchUserData} className="w-full max-w-md p-4 bg-white rounded-lg shadow-lg">
         <input
           type="text"
           placeholder="Enter GitHub username"
