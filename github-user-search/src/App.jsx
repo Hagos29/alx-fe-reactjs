@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import Header from "./components/Header";
+import Search from "./components/search";
 import Footer from "./components/Footer";
 
 function App() {
@@ -11,6 +11,7 @@ function App() {
         <main className="flex-grow p-4">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/" element={<Search />} />
           </Routes>
         </main>
         <Footer />
