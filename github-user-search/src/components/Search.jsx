@@ -7,7 +7,8 @@ const Search = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const handleSearch = async () => {
+  const handleSearch = async (event) => {
+    event.preventDefault();
     if (!username) return;
     setLoading(true);
     setError(null);
@@ -25,7 +26,7 @@ const Search = () => {
 
   return (
     <div className="flex flex-col items-center p-6 bg-gray-100 min-h-screen">
-      <div className="w-full max-w-md p-4 bg-white rounded-lg shadow-lg">
+      <form onSubmit={handleSearch} className="w-full max-w-md p-4 bg-white rounded-lg shadow-lg">
         <input
           type="text"
           placeholder="Enter GitHub username"
@@ -34,12 +35,12 @@ const Search = () => {
           onChange={(e) => setUsername(e.target.value)}
         />
         <button
+          type="submit"
           className="w-full bg-blue-500 text-white p-2 rounded-lg"
-          onClick={handleSearch}
         >
           Search
         </button>
-      </div>
+      </form>
 
       {loading && <p className="mt-4 text-blue-500">Loading...</p>}
       {error && <p className="mt-4 text-red-500">{error}</p>}
