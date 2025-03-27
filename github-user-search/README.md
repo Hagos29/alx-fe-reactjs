@@ -1,12 +1,61 @@
-# React + Vite
+# GitHub User Search
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Description
+GitHub User Search is a web application that allows users to search for GitHub profiles and view their details, including repositories, followers, and bio information.
 
-Currently, two official plugins are available:
+## Features
+- Search for GitHub users by username
+- Display user profile information (avatar, bio, followers, repositories, etc.)
+- View a list of repositories owned by the user
+- Responsive and user-friendly UI
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tech Stack
+- **Frontend:** Vite, React, Tailwind CSS
+- **State Management:** Zustand
+- **API:** GitHub REST API
 
-## Expanding the ESLint configuration
+## Installation
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Prerequisites
+Ensure you have **Node.js** and **npm** installed on your system.
+
+### Steps to Set Up
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/your-username/github-user-search.git
+   cd github-user-search
+   ```
+2. Install dependencies:
+   ```sh
+   npm install
+   ```
+3. Create a `.env` file in the root directory and add your GitHub API key (if required):
+   ```ini
+   VITE_APP_GITHUB_API_KEY=your_github_api_key_here
+   ```
+4. Start the development server:
+   ```sh
+   npm run dev
+   ```
+
+## Usage
+1. Enter a GitHub username in the search bar.
+2. Click on "Search" to fetch user details.
+3. View the profile information and repositories.
+
+## Deployment
+To deploy the application, you can use services like **Vercel** or **Netlify**:
+```sh
+npm run build
+```
+This generates a `dist/` folder, which you can deploy.
+
+## License
+This project is licensed under the MIT License.
+
+## Author
+Developed by **Hagos Yacob**.
+
+## Contributing
+Contributions are welcome! Feel free to fork this repository and submit pull requests.
+
