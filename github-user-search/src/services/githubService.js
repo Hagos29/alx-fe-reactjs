@@ -3,7 +3,7 @@ import axios from "axios";
 const BASE_URL = "https://api.github.com";
 
 /**
- * Fetch user profile data from GitHub
+ * Fetch GitHub user details by username
  * @param {string} username - GitHub username
  * @returns {Promise<Object>} - GitHub user data
  */
@@ -12,7 +12,7 @@ export const fetchUserData = async (username) => {
     const response = await axios.get(`${BASE_URL}/users/${username}`, {
       headers: {
         Accept: "application/vnd.github.v3+json",
-        Authorization: `Bearer ${process.env.GITHUB_TOKEN}`, // Optional for authentication
+        Authorization: `Bearer ${process.env.GITHUB_TOKEN}`, // Optional for higher rate limits
       },
     });
     return response.data;
@@ -22,9 +22,9 @@ export const fetchUserData = async (username) => {
 };
 
 /**
- * Search GitHub users with advanced filters
- * @param {Object} filters - Filtering criteria (e.g., location, repo count, followers)
- * @returns {Promise<Object>} - Search results from GitHub API
+ * Search for GitHub users with filters (including minRepos)
+ * @param {Object} filters - Filtering criteria (e.g., location, minRepos, followers)
+ * @returns {Promise<Object>} - GitHub user search results
  */
 export const searchUsers = async (filters) => {
   try {
@@ -42,24 +42,24 @@ export const searchUsers = async (filters) => {
 };
 
 /**
- * Construct a search query string based on provided filters
- * @param {Object} filters - Filtering criteria
- * @returns {string} - Query string for GitHub Search API
+ * Build the search query string for GitHub's user search API
+ * @param {Object} filters - Filtering options
+ * @returns {string} - Search query string
  */
 const buildSearchQuery = (filters) => {
   let queryParts = [];
 
   if (filters.username) queryParts.push(`${filters.username} in:login`);
   if (filters.location) queryParts.push(`location:${filters.location}`);
-  if (filters.repos) queryParts.push(`repos:>${filters.repos}`);
-  if (filters.followers) queryParts.push(`followers:>${filters.followers}`);
+  if (filters.minRepos) queryParts.push(`repos:>=${filters.minRepos}`);
+  if (filters.followers) queryParts.push(`followers:>=${filters.followers}`);
   if (filters.language) queryParts.push(`language:${filters.language}`);
 
   return queryParts.join("+");
 };
 
 /**
- * Handle API errors gracefully
+ * Handle API errors
  * @param {Object} error - Error object
  */
 const handleError = (error) => {
