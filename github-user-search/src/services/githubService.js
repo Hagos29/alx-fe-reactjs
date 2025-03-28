@@ -22,7 +22,7 @@ export const fetchUserData = async (username) => {
 };
 
 /**
- * Search for GitHub users with filters (including minRepos)
+ * Search for GitHub users using the GitHub Search API
  * @param {Object} filters - Filtering criteria (e.g., location, minRepos, followers)
  * @returns {Promise<Object>} - GitHub user search results
  */
